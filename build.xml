@@ -1,0 +1,91 @@
+<?xml version="1.0"?>
+<project name="mpd" default="all" basedir="."> 
+
+  <property name="appName" value="mpd" />	
+  <property name="war.file.name" value="mpd" />
+  <property name="dist" value="deploy"/> 
+  <property name="host" value="localhost"/>  
+  <property name="tomcat.home" value="C:\tomcat6_dev"/>
+  
+	<!-- All .class files -->
+	<fileset id="class.files" dir="." casesensitive="yes" >
+			<include name="**/*.class"/>
+	</fileset>
+	
+	<target name="all" depends="prep,deploy" />  
+  
+	
+	<target name="init" description="Sets timestamp properties and makes dir's.">
+ 		<tstamp>
+  			<format property="archiveTime" pattern="yyyyMMMdd.H.mm"/>
+ 		</tstamp>
+	</target>	
+	
+  <target name="prep" > 
+		  	<echo>START prep</echo>
+		  	<echo>deleting the deploy folder</echo>
+		    <delete dir="${dist}/WEB-INF" />
+		  	<echo>creating the deploy folder</echo>
+		    <mkdir dir="${dist}" />
+		  	<echo>copying Webcontent to the deploy folder</echo>
+
+  	
+			<copy todir="${dist}">
+		      <fileset dir="WebContent">
+		      	<include name="**/*"/>      	
+		      </fileset>
+		    </copy>	
+  	    
+		  	<copy todir="${dist}/WEB-INF">
+		      <fileset dir="WebContent/WEB-INF">
+		        <include name="**/*"/>
+		      </fileset>
+		    </copy>
+  	
+		  	<echo>copying Web-INF/classes to the deploy folder</echo>
+		  	<copy todir="${dist}/WEB-INF/classes">
+		      <fileset dir="build/classes/">
+		        <include name="**/*.class"/>
+		      </fileset>
+		    </copy>
+		  	  	
+		  	<copy todir="${dist}/WEB-INF/lib">
+		      <fileset dir="WebContent/WEB-INF/lib/">
+		        <include name="**/*.jar"/>      	
+		      </fileset>
+		    </copy>		
+		   
+  	<echo>*******END Prep*********</echo>
+  </target>
+  
+ <target name="deploy" > 
+  	<echo>START deploy</echo>
+  	<echo>deleting local server</echo>
+  	<delete dir="${tomcat.home}/webapps/${appName}"></delete>
+  	<echo>deploying files to local server</echo>
+  	<copy todir="${tomcat.home}/webapps/${appName}">
+        <fileset dir="deploy">
+          <include name="**/*"/>
+        </fileset>		
+  	</copy>
+  </target>
+	
+	<target name="Create War" >
+		<zip zipfile=".\mpd.war"
+			basedir="./deploy" />
+	</target>
+	
+	<target name = "Unleash-WAR" depends="Create War" description="Copy war file to Tomcat Webapps directory" >
+		<echo message = "WAR FILE is ${war.file.name}" />
+		<copy file="./${war.file.name}.war" todir="${tomcat.home}/webapps" />
+		<delete dir ="${tomcat.home}/webapps/${war.file.name}" />
+	</target>
+	<target name="clean" depends="init" description="Remove .class files, zip's and war's">
+ 	<!-- Does not remove archive files in Windows -->
+ 		<delete>
+  			<fileset refid="class.files"/>
+ 		</delete>
+ 		<delete file="${appName}.zip"/>
+ 		<delete file="${war.file.name}.war"/>
+	</target>	
+</project>

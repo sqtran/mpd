@@ -1,0 +1,12 @@
+
+footer {
+	
+	font-family:courier;
+    font-size:70%;	
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    height: 70px;
+    width: 100%;
+	}
+
