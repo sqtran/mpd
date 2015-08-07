@@ -12,22 +12,23 @@ import org.apache.commons.lang3.StringUtils;
 public class SQLAndOrClauseBuilder {
 
 	
-
-	/*
-	 * Precondtion: searchWords parameter is not empty or null
-	 * delimeter: can be null but not empty
-	 * 
-	 */
+/**
+ * 
+ * @param searchWords is not empty or null
+ * @param delimiter is not empty, if null then defaults to using single space between strings
+ * @return an Array of String Objects.  These are used as the parameters for Apache DBUtils queryrunner
+ */
 	public static Object[] buildParametersFromString(String searchWords, String delimiter){
 		Object[] arrayOfParameter = StringUtils.split(searchWords, delimiter);
 		return arrayOfParameter;
 		
 	}
 	
-	/*Precondition: numberOfParameters > 0
-	 * Parameter dbFieldName is not empty or null
-	 *Postcondition: will return a string in the form of:
-	 * 'fieldName Like ? (numberOfParameters == 1)
+	/**
+	 * @param numberOfParameters > 0
+	 * @param dbFieldName is not empty or null
+	 * @return: will return a string in the form of:
+	 * 'fieldName Like ? (if numberOfParameters == 1)
 	 * 'fieldName Like ? OR fieldName Like ? (NumberOfParameters > 1)
 	 */
 	public static String buildLikeOrClause(int numberOfParameters, String dbFieldName){
@@ -47,7 +48,13 @@ public class SQLAndOrClauseBuilder {
 		return orClauseWithParamHolder.toString();
 	}
 	
-	
+	/**
+	 * @param numberOfParameters > 0
+	 * @param dbFieldName is not empty or null
+	 * @return: will return a string in the form of:
+	 * 'fieldName Like ? (if numberOfParameters == 1)
+	 * 'fieldName Like ? AND fieldName Like ? (NumberOfParameters > 1)
+	 */
 	public static String buildLikeAndClause(int numberOfParameters, String dbFieldName){
 		
 		StringBuffer andClauseWithParamHolder = new StringBuffer(100);
@@ -65,6 +72,13 @@ public class SQLAndOrClauseBuilder {
 		System.out.println(andClauseWithParamHolder.toString());
 		return andClauseWithParamHolder.toString();
 	}	
+	
+	/**
+	 * Takes in an array of Strings and prepends/appends % to each String
+	 * @param searchStrings is not empty or null
+	 * @return an array of String Objects with starting and ending with % character
+	 * to be used in MySQL Like %searchWord% clause.
+	 */
 	
 	public static Object[] appendWildCardToSearchWords(Object[] searchStrings){
 				
