@@ -35,8 +35,7 @@ public class TrafficParkingInfraction extends HttpServlet {
 
 	   private static final long serialVersionUID = 1L;
 		BoneCPDataSource pool = null;
-		ServletContext application = null;
-		
+		ServletContext application = null;	
 		
 		 public void init(ServletConfig config)throws ServletException{
 			super.init(config);				

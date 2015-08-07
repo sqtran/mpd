@@ -108,10 +108,10 @@ public class ParkingMovingInfractionsDAO {
 				 arraySqlParameters[0] = searchWords;
 				 sql.append(fieldName+" LIKE ?");
 				break;
-			 case 1://any was selected add String of SQL 
+			 case 1://'any' was selected build Like OR clause of SQL
 				 sql.append(SQLAndOrClauseBuilder.buildLikeOrClause(arraySqlParameters.length, fieldName));
 				 break;
-			 case 2:
+			 case 2://'and' was selected build Like AND clause of SQL
 				 sql.append(SQLAndOrClauseBuilder.buildLikeAndClause(arraySqlParameters.length, fieldName));
 				 break;
 			 default:
