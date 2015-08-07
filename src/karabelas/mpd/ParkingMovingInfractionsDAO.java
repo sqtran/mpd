@@ -76,6 +76,15 @@ public class ParkingMovingInfractionsDAO {
 	    return 0;
 	  }
 	 
+	 /**
+	  * 
+	  * @param optButton =>0 determines the SQL builder
+	  * @param searchWords not empty and not null
+	  * @param fieldName-- databasefield name to be search
+	  * @return returns a List of ParkingMovingInfraction objects or an empty list
+	  * @throws SQLException
+	  */
+	 
 	 public static List<ParkingMovingInfraction> listSearchInfractionsByDescription(int optButton, String searchWords, String fieldName) throws SQLException {
 			
 		 List<ParkingMovingInfraction> lstOfInfractions = null;	
