@@ -12,8 +12,7 @@
 			<include name="**/*.class"/>
 	</fileset>
 	
-	<target name="all" depends="prep,deploy" />  
-  
+	<target name="all" depends="prep,deploy" />   
 	
 	<target name="init" description="Sets timestamp properties and makes dir's.">
  		<tstamp>

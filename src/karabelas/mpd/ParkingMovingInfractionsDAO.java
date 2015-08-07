@@ -16,20 +16,10 @@ import org.apache.commons.dbutils.QueryRunner;
 import org.apache.commons.dbutils.ResultSetHandler;
 import org.apache.commons.dbutils.handlers.BeanListHandler;
 
-/*
- * 
-
-SELECT * FROM mytable
-WHERE column1 LIKE '%word1%'
-   OR column1 LIKE '%word2%'
-   OR column1 LIKE '%word3%'
-If you need all words to be present, use this:
-
-SELECT * FROM mytable
-WHERE column1 LIKE '%word1%'
-  AND column1 LIKE '%word2%'
-  AND column1 LIKE '%word3%'
-
+/**
+ *  ParkingMovingInfractionsDAO
+ * @author karabelasw
+ *
  */
 
 public class ParkingMovingInfractionsDAO {
