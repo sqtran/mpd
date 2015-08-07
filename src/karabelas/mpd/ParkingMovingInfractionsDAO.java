@@ -52,11 +52,11 @@ public class ParkingMovingInfractionsDAO {
 	  /**
 	  * Return a single {@link LogRequest} identified by its id.
 	  */
-	  public ParkingMovingInfraction fetchbyId(int anID) {
+	  public static ParkingMovingInfraction fetchbyId(int anID) {
 	    return new ParkingMovingInfraction();
 	  }
 	  
-	  public ParkingMovingInfraction fetchByCode(String aCode) {
+	  public static ParkingMovingInfraction fetchByCode(String aCode) {
 		    return new ParkingMovingInfraction();
 	 }
 
