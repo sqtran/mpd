@@ -36,7 +36,7 @@ public class LookOutServletController extends HttpServlet {
 	   private static final long serialVersionUID = 1L;
 		BoneCPDataSource pool = null;
 		ServletContext application = null;	
-		private static String DEFAULT = "/WEB-INF/jsp/patrol/patrolentry.jsp";
+		private static String DEFAULT = "/WEB-INF/jsp/patrol/login.jsp";
 		
 		 public void init(ServletConfig config)throws ServletException{
 			super.init(config);				
