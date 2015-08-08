@@ -65,10 +65,10 @@ public class TrafficParkingInfraction extends HttpServlet {
 		public void doGet(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException{
 			
 			System.out.println("<-----doGetENTERING TrafficParkingInfraction Servlet-----> ");
-			if(vaildParameters(request)){
-				placeSearchResultsIntoUserSession(request);				
+			//if we have search words..giddy up
+			if(validParameters(request)){
+				placeSearchResultsIntoUserSession(request);			
 			}
-			
 			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/listinfractions.jsp");
 			rd.forward(request, response);
 		}
@@ -79,17 +79,15 @@ public class TrafficParkingInfraction extends HttpServlet {
 		
 		}
 
-		private boolean vaildParameters(HttpServletRequest request){
-			System.out.println("*****PROCESSING PARAMETERS*******");
-			String optionBtn = request.getParameter("sgroup");
+		private boolean validParameters(HttpServletRequest request){
+			System.out.println("*****PROCESSING PARAMETERS YAHOOO*******");			
 			String description = request.getParameter("description");
+			
 			boolean hasValidParams = false;
 			
-			//radio button was selected and search words given
-			if(optionBtn != null && !optionBtn.equals("")){
-			    if( description != null && !description.equals("")){
-			    	hasValidParams = true;
-			    }
+			//were search words provided
+			if(description != null && !description.equals("")){			   
+			    hasValidParams = true;			    
 			 }
 			return hasValidParams;
 					
@@ -100,6 +98,7 @@ public class TrafficParkingInfraction extends HttpServlet {
 		//on call to this.typeOfSearch(HttpServletRequest)
 		private void placeSearchResultsIntoUserSession(HttpServletRequest request){
 			String strDescription = request.getParameter("description");
+			strDescription = strDescription == null ? "" : strDescription;
 			try {
 				request.setAttribute("lstinfractions", ParkingMovingInfractionsDAO.listSearchInfractionsByDescription(typeOfSearch(request), strDescription, "Description"));
 			} catch (SQLException e) {
@@ -116,7 +115,7 @@ public class TrafficParkingInfraction extends HttpServlet {
 			
 				System.out.println("*****TYPE OF SEARCH *******");
 				String optionBtn = request.getParameter("sgroup");				
-						
+				optionBtn = optionBtn == null ? "zero" : optionBtn;
 		   //arbitrarily give parameters a number value starting with 0 until 2		
 				if(optionBtn.equals("exact")){
 					return 0;

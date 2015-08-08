@@ -12,7 +12,8 @@
 	<%-- 	<c:out value="${pageContext.request.requestURI}" />      --%>
 			<section>
 			 	<a title="DC Traffic Infractions" href="${pageContext.request.contextPath}/listinfractions.jsp">DC Traffic Infractions</a>
-			</section>	
+				<a title="Patrol" href="${pageContext.request.contextPath}/jsp/patrol/routinepatrol">Routine Patrol</a>
+				</section>	
 	</div>	
 	
 

@@ -62,4 +62,15 @@
     <servlet-name>TrafficParkingInfraction</servlet-name>
     <url-pattern>/listinfractions.jsp</url-pattern>
   </servlet-mapping>
+    <servlet>
+    <description></description>
+    <display-name>TenThreeZero</display-name>
+    <servlet-name>LookOutServletController</servlet-name>
+    <servlet-class>karabelas.servlet.LookOutServletController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>LookOutServletController</servlet-name>
+    <url-pattern>/jsp/patrol/*</url-pattern>
+  </servlet-mapping>
+  
 </web-app>
