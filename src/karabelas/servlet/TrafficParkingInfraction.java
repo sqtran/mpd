@@ -75,10 +75,17 @@ public class TrafficParkingInfraction extends HttpServlet {
 		
 		public void doPost(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException{
 			
-			doGet(request, response);				
-		
+			doGet(request, response);	
 		}
 
+		/**
+		 * only description (search words) need to be provided to make request valid
+		 * Effects: if no search words are provided the default behavior is to display
+		 * the entire list of parkingmovinginfractions from the application level scope (loaded at startup of
+		 * web application in Start.java servlet)
+		 * @param request
+		 * @return
+		 */
 		private boolean validParameters(HttpServletRequest request){
 			System.out.println("*****PROCESSING PARAMETERS YAHOOO*******");			
 			String description = request.getParameter("description");
@@ -107,9 +114,13 @@ public class TrafficParkingInfraction extends HttpServlet {
 			}
 			
 		}
-		/*
-		 * Precondition: the parameter "sgroup" from radio button is not null or empty
-		 * effects: used to determine which SQL Like clause to build
+		/**
+		 * 
+		 * @param request
+		 * @return an int used to determine which portion of the SQL Like Clause
+		 * needs to be built.  If user did not select an option, then defaults to
+		 * returning 0 (zero), which builds SQL like clause without any wildcard
+		 * LIKE searchWords
 		 */
 		private int typeOfSearch(HttpServletRequest request){
 			
