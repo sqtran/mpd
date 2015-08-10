@@ -1,28 +1,31 @@
 package karabelas.servlet;
 
-import javax.servlet.*;
-import javax.servlet.http.*;
-import java.io.*;
-import java.sql.*;
-import java.util.ArrayList;
+
+import java.io.IOException;
+import java.sql.SQLException;
 import java.util.List;
+
+import javax.servlet.ServletConfig;
+import javax.servlet.ServletContext;
+import javax.servlet.ServletException;
+import javax.servlet.UnavailableException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import karabelas.ContentsConstants;
+import karabelas.db.DBConfigFile;
+import karabelas.db.DBConnectionPool;
+import karabelas.mpd.ParkingMovingInfraction;
 
 import org.apache.commons.dbutils.QueryRunner;
 import org.apache.commons.dbutils.ResultSetHandler;
 import org.apache.commons.dbutils.handlers.BeanHandler;
 import org.apache.commons.dbutils.handlers.BeanListHandler;
-import org.apache.log4j.Logger;
-import org.apache.log4j.BasicConfigurator;
-import org.apache.log4j.PropertyConfigurator;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
-import karabelas.ContentsConstants;
-
-import com.jolbox.bonecp.BoneCP;
 import com.jolbox.bonecp.BoneCPConfig;
-import com.jolbox.bonecp.BoneCPDataSource;
-import karabelas.db.DBConfigFile;
-import karabelas.db.DBConnectionPool;
-import karabelas.mpd.ParkingMovingInfraction;
 
 /*
  * Application Starts here.  Creates a static BoneCP (database connectionpool)
@@ -31,14 +34,12 @@ import karabelas.mpd.ParkingMovingInfraction;
  * 
  */
 
-
 public class Start extends HttpServlet{
 
   
- // private static final Logger fLogger = Logger.getLogger(Start.class);	
   static ServletContext application = null;
   
-  static Logger logger = null;
+  static Logger logger = LoggerFactory.getLogger(Start.class);
   
   public void init(ServletConfig config) throws ServletException{
 	  	super.init(config);
@@ -60,7 +61,6 @@ public class Start extends HttpServlet{
 	    	application.setAttribute("pool", DBConnectionPool.getDBConnectionPool()); 
 	        insertDefaultMessages();
 	    	//testDBConnection();
-	        setUpLog4J(log4jLocation);
 	        System.out.println("*******----*******context name is " + application.getServletContextName()+"****-----*********");
 	    		
         }
@@ -115,23 +115,4 @@ public class Start extends HttpServlet{
 	  
 	  
   }
-  private static void setUpLog4J(String log4jLocation){
-  
-	  if (log4jLocation == null) {
-		System.err.println("*** No log4j-properties-location init param, so initializing log4j with BasicConfigurator");
-		BasicConfigurator.configure();
-	} else {
-		
-		File fileLog4J = new File(log4jLocation);
-		if (fileLog4J.exists()) {
-			System.out.println("Initializing log4j with: " + log4jLocation);
-			PropertyConfigurator.configure(log4jLocation);
-		} else {
-			System.err.println("*** " + log4jLocation + " file not found, so initializing log4j with BasicConfigurator");
-			BasicConfigurator.configure();
-		}
-	}
-  }
-
-  
 } //END Start servlet

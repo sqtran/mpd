@@ -1,10 +1,7 @@
 package karabelas.mpd;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
+
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.List;
 
 import javax.sql.DataSource;
@@ -12,6 +9,7 @@ import javax.sql.DataSource;
 import karabelas.LogRequest;
 import karabelas.db.DBConnectionPool;
 import karabelas.db.SQLAndOrClauseBuilder;
+
 import org.apache.commons.dbutils.QueryRunner;
 import org.apache.commons.dbutils.ResultSetHandler;
 import org.apache.commons.dbutils.handlers.BeanListHandler;

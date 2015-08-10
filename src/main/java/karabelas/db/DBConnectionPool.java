@@ -1,10 +1,9 @@
 package karabelas.db;
 
 import java.sql.SQLException;
-import com.jolbox.bonecp.BoneCP;
+
 import com.jolbox.bonecp.BoneCPConfig;
 import com.jolbox.bonecp.BoneCPDataSource;
-import com.mysql.jdbc.Driver;
 
 
 public final class DBConnectionPool {

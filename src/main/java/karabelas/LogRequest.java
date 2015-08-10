@@ -1,5 +1,6 @@
 package karabelas;
 
+
 public class LogRequest {
 
 	

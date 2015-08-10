@@ -1,19 +1,18 @@
 package karabelas.servlet;
 
-
 import java.util.Enumeration;
-import org.apache.log4j.Logger;
 
+import javax.servlet.ServletContext;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletRequestEvent;
 import javax.servlet.ServletRequestListener;
-import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 
 import karabelas.LogRequest;
 import karabelas.LogRequestDAO;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * 
@@ -27,7 +26,7 @@ import karabelas.LogRequestDAO;
 public class RequestLogger implements ServletRequestListener {
 	
 	private static ServletContext srvCntx = null; 	
-	private static final Logger fLogger = Logger.getLogger(RequestLogger.class);
+	private static final Logger fLogger = LoggerFactory.getLogger(RequestLogger.class);
 	
 	
 	public void requestDestroyed(ServletRequestEvent requestEvent){	

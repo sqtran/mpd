@@ -1,30 +1,20 @@
 package karabelas.servlet;
 
-import javax.servlet.*;
-import javax.servlet.http.*;
-import java.io.*;
-import java.sql.*;
-import java.util.ArrayList;
-import java.util.List;
 
-import org.apache.commons.dbutils.QueryRunner;
-import org.apache.commons.dbutils.ResultSetHandler;
-import org.apache.commons.dbutils.handlers.BeanHandler;
-import org.apache.commons.dbutils.handlers.BeanListHandler;
-import org.apache.log4j.Logger;
-import org.apache.log4j.BasicConfigurator;
-import org.apache.log4j.PropertyConfigurator;
+import java.io.IOException;
+import java.sql.SQLException;
 
-import karabelas.ContentsConstants;
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletConfig;
+import javax.servlet.ServletContext;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
-import com.jolbox.bonecp.BoneCP;
-import com.jolbox.bonecp.BoneCPConfig;
-import com.jolbox.bonecp.BoneCPDataSource;
-import karabelas.db.DBConfigFile;
-import karabelas.db.DBConnectionPool;
-import karabelas.mpd.ParkingMovingInfraction;
 import karabelas.mpd.ParkingMovingInfractionsDAO;
 
+import com.jolbox.bonecp.BoneCPDataSource;
 
 
 /**
